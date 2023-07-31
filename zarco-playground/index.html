@@ -118,7 +118,7 @@
         right: 0;
       }
     </style>
-    <script type="module" crossorigin src="/assets/index-92d227be.js"></script>
+    <script type="module" crossorigin src="/assets/index-67356579.js"></script>
     <link rel="stylesheet" href="/assets/index-3781a0eb.css">
   </head>
   <body class="body">
@@ -656,7 +656,10 @@
         </div>
       </div>
       <div class="panels-section" id="panelsSection">
-        <section class="entry-section _wf-section wf-section">
+        <section
+          class="entry-section _wf-section wf-section"
+          data-panel-section
+        >
           <div
             data-section-content=""
             class="w-layout-blockcontainer container-gutter w-container"
@@ -666,7 +669,7 @@
             </h1>
           </div>
         </section>
-        <section class="about-us _wf-section wf-section">
+        <section class="about-us _wf-section wf-section" data-panel-section>
           <div
             data-section-content=""
             class="w-layout-blockcontainer container-gutter w-container"
@@ -697,7 +700,7 @@
             </div>
           </div>
         </section>
-        <section class="form-cta _wf-section wf-section">
+        <section class="form-cta _wf-section wf-section" data-panel-section>
           <div
             data-section-content=""
             class="w-layout-blockcontainer container w-container"
@@ -771,7 +774,7 @@
             </div>
           </div>
         </section>
-        <section class="about-us _wf-section wf-section">
+        <section class="about-us _wf-section wf-section" data-panel-section>
           <div
             data-section-content=""
             class="w-layout-blockcontainer container-gutter w-container"
@@ -942,5 +945,37 @@
       </div>
     </div>
     
+    <script>
+      window.addEventListener("load", function () {
+        if (window.themeGSAP) {
+          const mobileMediaQuery = window.matchMedia("(max-width: 600px)");
+          const arrowDownButton = document.querySelector(
+            "[data-scroll-to-panels]"
+          );
+
+          arrowDownButton?.addEventListener("click", (e) => {
+            e.preventDefault();
+            if (mobileMediaQuery.matches) {
+              window.themeGSAP.to(window, {
+                duration: 0.5,
+                scrollTo: "#panelsSection",
+              });
+            } else {
+              window.themeGSAP.to(window, {
+                duration: 0.5,
+                scrollTo: window.innerHeight + 280,
+              });
+            }
+          });
+
+          const logoSVGLink = document.querySelector(".logo__svg");
+
+          logoSVGLink?.addEventListener("click", (e) => {
+            e.preventDefault();
+            window.themeGSAP.to(window, { duration: 0.5, scrollTo: "body" });
+          });
+        }
+      });
+    </script>
   </body>
 </html>
